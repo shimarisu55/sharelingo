@@ -1,0 +1,14 @@
+{
+  "resourceName": "sharelingoStorage",
+  "policyUUID": "58c0c06d",
+  "bucketName": "sharelingo-storage",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

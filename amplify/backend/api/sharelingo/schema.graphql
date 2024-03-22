@@ -1,0 +1,30 @@
+type Series @model 
+@auth(rules: [{ allow: owner }, { allow: private, operations: [read] }]) {
+  id: ID!
+  seriesTitle: String!
+  pictureBooks: [PictureBook] @hasMany
+} 
+
+type PictureBook @model 
+@auth(rules: [{ allow: owner }, { allow: private, operations: [read, create] }]) {
+  id: ID!
+  series: Series @belongsTo
+  pictureBookTitle: String!
+  contents: [PictureBookContent] @hasMany (indexName: "byPictureBookContentId", fields:["id"])
+}
+
+type PictureBookContent @model 
+@auth(rules: [{ allow: owner }, { allow: private, operations: [read,create] }]) {
+  id: ID!
+  pictureBookId: ID 
+    @index(
+      name: "byPictureBookContentId"
+      queryField: "listPictureBookContentSortByNum"
+      sortKeyFields: ["num"]
+    )
+  num: Int!
+  soundSource: String
+  textJap: String
+  textEng: String
+  createdBy: String
+}

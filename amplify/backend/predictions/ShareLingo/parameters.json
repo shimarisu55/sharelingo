@@ -1,0 +1,14 @@
+{
+    "resourceName": "ShareLingo",
+    "convertPolicyName": "speechGeneratorPolicy754f3cf1",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "convertType": "speechGenerator",
+    "language": "en-GB",
+    "voice": "Emma",
+    "access": "auth"
+}

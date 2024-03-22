@@ -1,0 +1,169 @@
+{
+  "api": {
+    "sharelingo": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authsharelingo5decd555"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "sharelingo5decd555": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "function": {},
+  "hosting": {
+    "amplifyhosting": {
+      "providerPlugin": "awscloudformation",
+      "service": "amplifyhosting",
+      "type": "manual"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_sharelingo5decd555_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_auth_sharelingo5decd555_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "sharelingo5decd555"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_appId": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_type": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    }
+  },
+  "predictions": {
+    "ShareLingo": {
+      "convertType": "speechGenerator",
+      "providerPlugin": "awscloudformation",
+      "service": "Polly"
+    }
+  },
+  "storage": {
+    "sharelingoStorage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
+}

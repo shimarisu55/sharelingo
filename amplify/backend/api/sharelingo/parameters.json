@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "sharelingo",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-03-14T05:03:04.975Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authsharelingo5decd555",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
