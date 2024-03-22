@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    container_name: ShareLingo
+    build: ./
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/usr/app
+      - ./aws/:/root/.aws/
+    working_dir: "/usr/app"
+    tty: true
+    command: sh -c "cd sharelingo && yarn start"
+    environment:
+      - NODE_ENV=development
