@@ -65,7 +65,7 @@ amplify codegen ←　ampify関連のファイルを作成
 ```
 yarn start  
 ```
-http://localhos:3000 にアクセス
+http://localhos:3000 にアクセス  
 // 問題がなかったらdocker-compose.yamlのコメントアウト行を元に戻す
 
 # 新しくライブラリを入れたいとき
