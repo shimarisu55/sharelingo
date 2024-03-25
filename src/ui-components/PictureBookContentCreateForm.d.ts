@@ -26,14 +26,12 @@ export declare type PictureBookContentCreateFormInputValues = {
     soundSource?: string;
     textJap?: string;
     textEng?: string;
-    createdBy?: string;
 };
 export declare type PictureBookContentCreateFormValidationValues = {
     num?: ValidationFunction<number>;
     soundSource?: ValidationFunction<string>;
     textJap?: ValidationFunction<string>;
     textEng?: ValidationFunction<string>;
-    createdBy?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PictureBookContentCreateFormOverridesProps = {
@@ -42,7 +40,6 @@ export declare type PictureBookContentCreateFormOverridesProps = {
     soundSource?: PrimitiveOverrideProps<TextFieldProps>;
     textJap?: PrimitiveOverrideProps<TextFieldProps>;
     textEng?: PrimitiveOverrideProps<TextFieldProps>;
-    createdBy?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type PictureBookContentCreateFormProps = React.PropsWithChildren<{
     overrides?: PictureBookContentCreateFormOverridesProps | undefined | null;

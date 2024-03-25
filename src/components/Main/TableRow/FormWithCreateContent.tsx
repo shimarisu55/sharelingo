@@ -32,17 +32,13 @@ export default function FormWithCreateContent(props: FormWithCreateContentProp) 
   const [contentNumber, setContentNumber] = React.useState(nextContentNumber);
   const [textEng, setTextEng] = React.useState(initialValues.textEng);
 
-
-
   // DynamoDB登録
   const registerContent = async (s3path: string) => {
-    const { userId } = await getCurrentUser();
     const content: CreatePictureBookContentInput = {
       pictureBookId: pictureBookID,
       num: contentNumber,
       textEng: textEng,
       soundSource: s3path,
-      createdBy: userId
     }
     const create = async () => {
       const newProfile = await client.graphql({

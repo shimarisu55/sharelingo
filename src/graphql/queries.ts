@@ -187,7 +187,6 @@ export const getPictureBookContent = /* GraphQL */ `query GetPictureBookContent(
     soundSource
     textJap
     textEng
-    createdBy
     createdAt
     updatedAt
     _version
@@ -218,7 +217,6 @@ export const listPictureBookContents = /* GraphQL */ `query ListPictureBookConte
       soundSource
       textJap
       textEng
-      createdBy
       createdAt
       updatedAt
       _version
@@ -255,7 +253,6 @@ export const syncPictureBookContents = /* GraphQL */ `query SyncPictureBookConte
       soundSource
       textJap
       textEng
-      createdBy
       createdAt
       updatedAt
       _version
@@ -296,7 +293,6 @@ export const listPictureBookContentSortByNum = /* GraphQL */ `query ListPictureB
       soundSource
       textJap
       textEng
-      createdBy
       createdAt
       updatedAt
       _version

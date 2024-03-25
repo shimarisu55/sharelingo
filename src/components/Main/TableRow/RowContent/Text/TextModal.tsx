@@ -18,12 +18,12 @@ export default function TextMordal(props: TextModal) {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => { 
-    const getUserId = async () => {   
-      const { userId } = await getCurrentUser();
-      const isAuthenticated = pictureBookContent.createdBy === userId
+    const getUserAuth = async () => {   
+      const { username } = await getCurrentUser();
+      const isAuthenticated = pictureBookContent.owner === username
       setIsAuth(isAuthenticated);
     }
-    getUserId();
+    getUserAuth();
   }, []);
 
   const handleClickOpen = () => {

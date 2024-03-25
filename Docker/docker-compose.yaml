@@ -8,6 +8,7 @@ services:
     volumes:
       - ./src:/usr/app
       - ./aws/:/root/.aws/
+      - ~/home/shiho/.ssh/:/root/.ssh/
     working_dir: "/usr/app"
     tty: true
     command: sh -c "cd sharelingo && yarn start"

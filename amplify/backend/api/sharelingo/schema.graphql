@@ -26,5 +26,4 @@ type PictureBookContent @model
   soundSource: String
   textJap: String
   textEng: String
-  createdBy: String
 }

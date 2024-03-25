@@ -4,6 +4,7 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as NewForm1 } from "./NewForm1";
 export { default as PictureBookContentCreateForm } from "./PictureBookContentCreateForm";
 export { default as PictureBookContentUpdateForm } from "./PictureBookContentUpdateForm";
 export { default as PictureBookCreateForm } from "./PictureBookCreateForm";

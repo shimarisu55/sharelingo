@@ -205,7 +205,6 @@ export const onCreatePictureBookContent = /* GraphQL */ `subscription OnCreatePi
     soundSource
     textJap
     textEng
-    createdBy
     createdAt
     updatedAt
     _version
@@ -230,7 +229,6 @@ export const onUpdatePictureBookContent = /* GraphQL */ `subscription OnUpdatePi
     soundSource
     textJap
     textEng
-    createdBy
     createdAt
     updatedAt
     _version
@@ -255,7 +253,6 @@ export const onDeletePictureBookContent = /* GraphQL */ `subscription OnDeletePi
     soundSource
     textJap
     textEng
-    createdBy
     createdAt
     updatedAt
     _version

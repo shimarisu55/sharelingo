@@ -27,7 +27,6 @@ export default function PictureBookContentUpdateForm(props) {
     soundSource: "",
     textJap: "",
     textEng: "",
-    createdBy: "",
   };
   const [num, setNum] = React.useState(initialValues.num);
   const [soundSource, setSoundSource] = React.useState(
@@ -35,7 +34,6 @@ export default function PictureBookContentUpdateForm(props) {
   );
   const [textJap, setTextJap] = React.useState(initialValues.textJap);
   const [textEng, setTextEng] = React.useState(initialValues.textEng);
-  const [createdBy, setCreatedBy] = React.useState(initialValues.createdBy);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = pictureBookContentRecord
@@ -45,7 +43,6 @@ export default function PictureBookContentUpdateForm(props) {
     setSoundSource(cleanValues.soundSource);
     setTextJap(cleanValues.textJap);
     setTextEng(cleanValues.textEng);
-    setCreatedBy(cleanValues.createdBy);
     setErrors({});
   };
   const [pictureBookContentRecord, setPictureBookContentRecord] =
@@ -65,7 +62,6 @@ export default function PictureBookContentUpdateForm(props) {
     soundSource: [],
     textJap: [],
     textEng: [],
-    createdBy: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -97,7 +93,6 @@ export default function PictureBookContentUpdateForm(props) {
           soundSource,
           textJap,
           textEng,
-          createdBy,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -161,7 +156,6 @@ export default function PictureBookContentUpdateForm(props) {
               soundSource,
               textJap,
               textEng,
-              createdBy,
             };
             const result = onChange(modelFields);
             value = result?.num ?? value;
@@ -189,7 +183,6 @@ export default function PictureBookContentUpdateForm(props) {
               soundSource: value,
               textJap,
               textEng,
-              createdBy,
             };
             const result = onChange(modelFields);
             value = result?.soundSource ?? value;
@@ -217,7 +210,6 @@ export default function PictureBookContentUpdateForm(props) {
               soundSource,
               textJap: value,
               textEng,
-              createdBy,
             };
             const result = onChange(modelFields);
             value = result?.textJap ?? value;
@@ -245,7 +237,6 @@ export default function PictureBookContentUpdateForm(props) {
               soundSource,
               textJap,
               textEng: value,
-              createdBy,
             };
             const result = onChange(modelFields);
             value = result?.textEng ?? value;
@@ -259,34 +250,6 @@ export default function PictureBookContentUpdateForm(props) {
         errorMessage={errors.textEng?.errorMessage}
         hasError={errors.textEng?.hasError}
         {...getOverrideProps(overrides, "textEng")}
-      ></TextField>
-      <TextField
-        label="Created by"
-        isRequired={false}
-        isReadOnly={false}
-        value={createdBy}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              num,
-              soundSource,
-              textJap,
-              textEng,
-              createdBy: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.createdBy ?? value;
-          }
-          if (errors.createdBy?.hasError) {
-            runValidationTasks("createdBy", value);
-          }
-          setCreatedBy(value);
-        }}
-        onBlur={() => runValidationTasks("createdBy", createdBy)}
-        errorMessage={errors.createdBy?.errorMessage}
-        hasError={errors.createdBy?.hasError}
-        {...getOverrideProps(overrides, "createdBy")}
       ></TextField>
       <Flex
         justifyContent="space-between"

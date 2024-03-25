@@ -205,7 +205,6 @@ export const createPictureBookContent = /* GraphQL */ `mutation CreatePictureBoo
     soundSource
     textJap
     textEng
-    createdBy
     createdAt
     updatedAt
     _version
@@ -230,7 +229,6 @@ export const updatePictureBookContent = /* GraphQL */ `mutation UpdatePictureBoo
     soundSource
     textJap
     textEng
-    createdBy
     createdAt
     updatedAt
     _version
@@ -255,7 +253,6 @@ export const deletePictureBookContent = /* GraphQL */ `mutation DeletePictureBoo
     soundSource
     textJap
     textEng
-    createdBy
     createdAt
     updatedAt
     _version

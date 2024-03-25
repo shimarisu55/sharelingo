@@ -37,7 +37,7 @@ export default function Sidebar(props: SidebarProps) {
         query: queries.listSeries,
       }) as GraphQLResult<ListSeriesQuery>;
       const listPictureBooks = api.data.listSeries?.items;
-      
+
       if (listPictureBooks) {
         let series = initialValues.series
         series.pop()

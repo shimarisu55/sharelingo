@@ -63,6 +63,7 @@ export default function PictureBookRow(props: RowBook) {
       next: ({ data }) => {
         const pictureBookContent = data.onCreatePictureBookContent
         setContents(prev => [...prev, pictureBookContent])
+        setNextContentNumber(pictureBookContent.num+1)
       },
       error: (error) => console.warn(error)
     });

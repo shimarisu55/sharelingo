@@ -38,4 +38,10 @@ DockerFileに記入し、docker-compose build
 docker-compose down -v  
 
 # 本番環境にpush
+amplify env checkout prod
+amplify push
+amplify publish
 
+# git
+cd /home/shiho/shareLingo/src/sharelingo
+git push origin main

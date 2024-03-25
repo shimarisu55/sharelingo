@@ -81,7 +81,6 @@ type EagerPictureBookContent = {
   readonly soundSource?: string | null;
   readonly textJap?: string | null;
   readonly textEng?: string | null;
-  readonly createdBy?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -97,7 +96,6 @@ type LazyPictureBookContent = {
   readonly soundSource?: string | null;
   readonly textJap?: string | null;
   readonly textEng?: string | null;
-  readonly createdBy?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
