@@ -15,6 +15,7 @@ cp {ファイル名}/src/sharelingo/Docker/Dockerfile {ファイル名}/
 
 // dockerスタート
 ```
+cd {ファイル名}
 docker-compose build  
 docker-compose up -d  
 docker logs {コンテナ名}  ←　エラーの原因を探る  
