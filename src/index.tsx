@@ -6,8 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import "@aws-amplify/ui-react/styles.css";
 import { Amplify } from 'aws-amplify';
 import config from './amplifyconfiguration.json';
+// 日本語対応
+import { I18n } from 'aws-amplify/utils';
+import { jaDict } from "./Auth/vocabularies";
 
 Amplify.configure(config);
+I18n.putVocabularies(jaDict);
+I18n.setLanguage('ja');
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
