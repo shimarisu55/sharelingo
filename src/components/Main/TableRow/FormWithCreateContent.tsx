@@ -31,7 +31,7 @@ export default function FormWithCreateContent(props: FormWithCreateContentProp) 
     textEng: "",
   };
   const client = generateClient();
-  const [contentNumber, setContentNumber] = React.useState(nextContentNumber);
+  const [contentNumber, setContentNumber] = React.useState(0);
   const [textEng, setTextEng] = React.useState(initialValues.textEng);
   const [japaneseText, setJapaneseText] = React.useState("")
   const [showForm, setShowForm] = React.useState(false);
@@ -63,9 +63,9 @@ export default function FormWithCreateContent(props: FormWithCreateContentProp) 
   // １ページごとか、絵本全体かでnumberを決める。絵本全体の時は0
   const dicideContentNumber = (toggle: string) => {
     if (toggle == "left") {
-        setContentNumber(nextContentNumber)
-    } else {
         setContentNumber(0)
+    } else {
+        setContentNumber(nextContentNumber)
     }
   }
 

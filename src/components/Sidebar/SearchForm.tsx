@@ -24,7 +24,7 @@ export default function SearchForm(props: SearchProps) {
       padding="20px"
     >
       <Autocomplete
-        label="検索"
+        label=""
         placeholder="Peppa Pig"
         isRequired={false}
         options={[]}

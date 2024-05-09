@@ -26,10 +26,10 @@ export default function ToggleButtons(props: ToggleProp) {
       aria-label="text alignment"
     >
       <ToggleButton value="left" aria-label="left aligned">
-        見開き
+        絵本全体
       </ToggleButton>
       <ToggleButton value="right" aria-label="right aligned">
-        絵本全体
+        見開き
       </ToggleButton>
     </ToggleButtonGroup>
   );

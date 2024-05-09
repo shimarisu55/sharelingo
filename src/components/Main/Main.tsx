@@ -2,6 +2,7 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { blue } from '@mui/material/colors';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import PictureBookTable from "./PictureBookTable"
@@ -86,6 +87,7 @@ export function Main(props: MainProps) {
         },
       }}
     >
+      <Typography color={blue[500]}>絵本の音源ダウンロード</Typography>
       { showSeriesTitle == "" ? null : 
       <Stack direction="row" columnGap="15px" padding="10px">
         <Typography variant="h6">{showSeriesTitle}</Typography>

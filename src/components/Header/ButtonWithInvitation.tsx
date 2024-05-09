@@ -58,21 +58,23 @@ export default function ButtonWithInvitation() {
           紹介コード： {invitationCode}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             サイト使用のために必要な紹介コードです。サイトのurlと一緒に送ってください。
           </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
           </DialogContentText>
           　
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             しぇありんごとは？
           </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
           おうち英語を営む家庭向けに作られた、音声ペン用の音源を共有する内輪サイトです。
+          自宅にある絵本のテキストを入力すると、chatGPTが英語に翻訳してくれます。
+          ついでに英文の音源も作ったので、自由にダウンロードして使ってください。
           著作権の関係上あくまで「内輪」でやるため招待制としていますが、必要な人には誰にでも届いて活用してもらえたら嬉しいです。
           もちろん投稿も歓迎です。
           </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
           ＊悪意のある投稿やユーザーを発見した場合、予告なく削除させていただくことがあります。
           </DialogContentText>
           <Copyright />

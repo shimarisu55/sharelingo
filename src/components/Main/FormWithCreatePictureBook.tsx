@@ -10,7 +10,6 @@ import { generateClient } from 'aws-amplify/api';
 import * as mutations from '../../graphql/mutations';
 import { CreatePictureBookInput, CreatePictureBookMutation } from '../../API';
 import { GraphQLResult } from "@aws-amplify/api-graphql";
-// import { getCurrentUser } from 'aws-amplify';
 
 interface CloseProp {
   seriesID: string

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { blue, red } from '@mui/material/colors';
 import { useEffect, useState } from "react";
 import SearchForm from "./SearchForm"
 import SidebarList from "./SidebarList"
@@ -73,6 +73,7 @@ export default function Sidebar(props: SidebarProps) {
 
   return (
     <Grid item xs={12} md={4}>
+      <Typography color={blue[500]}>絵本シリーズ名を検索</Typography>
       <SearchForm searchSeriesTitles={selectSeriesTitle} />
       { showSeriesTitles[0].id == "non" ?
         <Stack direction="row" columnGap="15px" padding="10px">
@@ -81,6 +82,7 @@ export default function Sidebar(props: SidebarProps) {
         </Stack>
       : null
       }
+      <Typography top="30px" color={blue[500]}>シリーズ一覧</Typography>
       {/* // シリーズ名のリストは10件以内にする */}
       { showSeriesTitles.map((item, index) => {
         if (index > 9) { return null } 
