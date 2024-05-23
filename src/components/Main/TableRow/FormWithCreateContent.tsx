@@ -7,6 +7,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { Typography, Stack, Button } from "@mui/material";
 import ToggleButton from './ToggleButton'
+import { red } from '@mui/material/colors';
 import DialogContentText from '@mui/material/DialogContentText';
 import { GraphQLResult, generateClient } from 'aws-amplify/api';
 import * as mutations from '../../../graphql/mutations';
@@ -31,10 +32,12 @@ export default function FormWithCreateContent(props: FormWithCreateContentProp) 
     textEng: "",
   };
   const client = generateClient();
-  const [contentNumber, setContentNumber] = React.useState(0);
+  const [contentNumber, setContentNumber] = React.useState(nextContentNumber);
   const [textEng, setTextEng] = React.useState(initialValues.textEng);
   const [japaneseText, setJapaneseText] = React.useState("")
   const [showForm, setShowForm] = React.useState(false);
+  // まだコンテンツが0の時は絵本全体、ある時は見開きをさす
+  const toggleText = nextContentNumber > 0 ? "right" : "left"
 
   // DynamoDB登録
   const registerContent = async (s3path: string) => {
@@ -61,6 +64,7 @@ export default function FormWithCreateContent(props: FormWithCreateContentProp) 
   }
 
   // １ページごとか、絵本全体かでnumberを決める。絵本全体の時は0
+  // toggleボタンを押したときに発火
   const dicideContentNumber = (toggle: string) => {
     if (toggle == "left") {
         setContentNumber(0)
@@ -107,8 +111,11 @@ export default function FormWithCreateContent(props: FormWithCreateContentProp) 
       padding="20px"
     >
       <Typography>番号：{contentNumber}</Typography>
+      <Typography variant="body1" color={red[500]}>
+        *絵本全体の音声は0を、1以上の番号はページごとの音声を示します。
+      </Typography>
       <Stack direction="row" spacing={4}>
-        <ToggleButton dicideContentNumber={dicideContentNumber} />
+        <ToggleButton dicideContentNumber={dicideContentNumber} toggleText={toggleText} />
         <Button
           variant="contained"
           size="small"
@@ -141,6 +148,7 @@ export default function FormWithCreateContent(props: FormWithCreateContentProp) 
             setJapaneseText(value);
           }}
         ></TextAreaField>
+        <DialogContentText>翻訳には数秒時間がかかります。</DialogContentText>
         </div>
      : null}
 

@@ -11,11 +11,18 @@ interface TextModal {
   pictureBookContent: PictureBookContent
 }
 
+// コンテンツの中から１行だけ取り出す
+const getFirstLine = (text: string) => {
+  const lines = text.split('\n');
+  return lines.length > 1 ? `${lines[0]}...` : lines[0];
+};
+
 export default function TextMordal(props: TextModal) {
   const { pictureBookContent } = props;
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
+  const firstLine = getFirstLine(pictureBookContent.textEng ?? "");
 
   useEffect(() => { 
     const getUserAuth = async () => {   
@@ -39,9 +46,13 @@ export default function TextMordal(props: TextModal) {
     setEditing(!editing);
   }
 
+
+
   return (
     <React.Fragment>
-      <Button onClick={handleClickOpen}>Text</Button>
+      <Button sx={{ textTransform: "none" }} onClick={handleClickOpen}>
+        {firstLine}
+      </Button>
       <Dialog open={open}>
         { editing ?
           <DialogEditText pictureBookContent={pictureBookContent} handleClose={handleClose} />

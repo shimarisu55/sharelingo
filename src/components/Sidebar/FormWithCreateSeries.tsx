@@ -55,7 +55,7 @@ export default function FormWithCreateSeries(props: CloseProp) {
         descriptiveText="不明なときは絵本の作者名を入力"
         isRequired={true}
         isReadOnly={false}
-        placeholder="first little readers A"
+        placeholder="First Little Readers Level A"
         value={seriesTitle}
         onChange={(e) => {
           let { value } = e.target;

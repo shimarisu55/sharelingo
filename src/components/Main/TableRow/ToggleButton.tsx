@@ -4,11 +4,12 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 interface ToggleProp {
     dicideContentNumber: (toggle: string) => void ;
+    toggleText: string;
 }
 
 export default function ToggleButtons(props: ToggleProp) {
-  const { dicideContentNumber } = props;
-  const [alignment, setAlignment] = React.useState<string>('left');
+  const { dicideContentNumber, toggleText } = props;
+  const [alignment, setAlignment] = React.useState<string>(toggleText);
 
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,

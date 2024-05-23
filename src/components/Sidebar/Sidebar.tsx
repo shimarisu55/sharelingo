@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
 import { blue, red } from '@mui/material/colors';
 import { useEffect, useState } from "react";
@@ -30,8 +32,13 @@ export default function Sidebar(props: SidebarProps) {
   const client = generateClient();
 
   useEffect(() => {   
+    fetchSeries()
+  }, []);
+
+  const fetchSeries = () => {
     // 初期化
     setFetchedSeriesTitles(initialValues.series)
+    setSeriesTitles(initialValues.series)
     const fetch = async () => {
       const api = await client.graphql({
         query: queries.listSeries,
@@ -51,7 +58,7 @@ export default function Sidebar(props: SidebarProps) {
     };
     fetch()
     .then(() => { setSeriesTitles(fetchedSeriesTitles) });
-  }, []);
+  }
 
   //　リアルタイム検索用の関数
   const selectSeriesTitle = (inputWord: string) => {
@@ -74,7 +81,12 @@ export default function Sidebar(props: SidebarProps) {
   return (
     <Grid item xs={12} md={4}>
       <Typography color={blue[500]}>絵本シリーズ名を検索</Typography>
-      <SearchForm searchSeriesTitles={selectSeriesTitle} />
+      <Stack direction="row" spacing={0} justifyContent="space-between">
+        <SearchForm searchSeriesTitles={selectSeriesTitle} />
+        <Button variant="text" size="small" onClick={fetchSeries}>
+          <UpdateIcon />
+        </Button>
+      </Stack>
       { showSeriesTitles[0].id == "non" ?
         <Stack direction="row" columnGap="15px" padding="10px">
           <Typography variant="body1" color={red[500]}> ありません。新しく作成してください。</Typography>
