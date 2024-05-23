@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  TextAreaField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { PictureBook } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { DataStore } from "aws-amplify/datastore";
@@ -22,35 +16,24 @@ export default function PictureBookCreateForm(props) {
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    seriesTitle: "",
     pictureBookTitle: "",
-    textEng: "",
   };
-  const [seriesTitle, setSeriesTitle] = React.useState(
-    initialValues.seriesTitle
-  );
   const [pictureBookTitle, setPictureBookTitle] = React.useState(
     initialValues.pictureBookTitle
   );
-  const [textEng, setTextEng] = React.useState(initialValues.textEng);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setSeriesTitle(initialValues.seriesTitle);
     setPictureBookTitle(initialValues.pictureBookTitle);
-    setTextEng(initialValues.textEng);
     setErrors({});
   };
   const validations = {
-    seriesTitle: [],
     pictureBookTitle: [{ type: "Required" }],
-    textEng: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -78,9 +61,7 @@ export default function PictureBookCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          seriesTitle,
           pictureBookTitle,
-          textEng,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -110,10 +91,7 @@ export default function PictureBookCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          const modelFieldsToSave = {
-            pictureBookTitle: modelFields.pictureBookTitle,
-          };
-          await DataStore.save(new PictureBook(modelFieldsToSave));
+          await DataStore.save(new PictureBook(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -130,49 +108,15 @@ export default function PictureBookCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="シリーズタイトル"
-        descriptiveText="わからないときは絵本の作者名"
-        placeholder="first little readers A"
-        value={seriesTitle}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              seriesTitle: value,
-              pictureBookTitle,
-              textEng,
-            };
-            const result = onChange(modelFields);
-            value = result?.seriesTitle ?? value;
-          }
-          if (errors.seriesTitle?.hasError) {
-            runValidationTasks("seriesTitle", value);
-          }
-          setSeriesTitle(value);
-        }}
-        onBlur={() => runValidationTasks("seriesTitle", seriesTitle)}
-        errorMessage={errors.seriesTitle?.errorMessage}
-        hasError={errors.seriesTitle?.hasError}
-        {...getOverrideProps(overrides, "seriesTitle")}
-      ></TextField>
-      <TextField
-        label={
-          <span style={{ display: "inline-flex" }}>
-            <span>絵本のタイトル</span>
-            <span style={{ color: "red" }}>*</span>
-          </span>
-        }
+        label="Picture book title"
         isRequired={true}
         isReadOnly={false}
-        placeholder="what is red"
         value={pictureBookTitle}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              seriesTitle,
               pictureBookTitle: value,
-              textEng,
             };
             const result = onChange(modelFields);
             value = result?.pictureBookTitle ?? value;
@@ -187,47 +131,25 @@ export default function PictureBookCreateForm(props) {
         hasError={errors.pictureBookTitle?.hasError}
         {...getOverrideProps(overrides, "pictureBookTitle")}
       ></TextField>
-      <TextAreaField
-        label="テキスト（任意）"
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              seriesTitle,
-              pictureBookTitle,
-              textEng: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.textEng ?? value;
-          }
-          if (errors.textEng?.hasError) {
-            runValidationTasks("textEng", value);
-          }
-          setTextEng(value);
-        }}
-        onBlur={() => runValidationTasks("textEng", textEng)}
-        errorMessage={errors.textEng?.errorMessage}
-        hasError={errors.textEng?.hasError}
-        {...getOverrideProps(overrides, "textEng")}
-      ></TextAreaField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
+        <Button
+          children="Clear"
+          type="reset"
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          {...getOverrideProps(overrides, "ClearButton")}
+        ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="キャンセル"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
-          <Button
-            children="投稿"
+            children="Submit"
             type="submit"
             variation="primary"
             isDisabled={Object.values(errors).some((e) => e?.hasError)}

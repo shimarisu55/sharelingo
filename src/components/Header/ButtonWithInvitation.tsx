@@ -8,7 +8,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { useEffect, useState } from "react";
-import invitationEnv from "../../invitationEnv.json";
 
 export default function ButtonWithInvitation() {
   const [open, setOpen] = useState(false);
@@ -37,10 +36,18 @@ export default function ButtonWithInvitation() {
 
   useEffect(() => {    
     // 招待コードの作成
-    const min = Math.ceil(invitationEnv.min) * invitationEnv.prime_number;
-    const max = Math.floor(invitationEnv.max)* invitationEnv.prime_number;
-    const randomCode = Math.floor(Math.random() * (max - min) + min);
-    setInvitationCode(randomCode)
+    const primeString = process.env.REACT_APP_INV_PRIME_NUMBER ?? "";
+    const prime = parseInt(primeString,10)
+    const min = 100000; // 6桁の最小値
+    const max = 999999; // 6桁の最大値
+    // 6桁の範囲内で4423の倍数の最小値と最大値を計算
+    const minMultiple = Math.ceil(min / prime);
+    const maxMultiple = Math.floor(max / prime);
+    // ランダムに4423の倍数を選ぶ
+    const randomMultiple = Math.floor(Math.random() * (maxMultiple - minMultiple + 1)) + minMultiple;
+    // 素数の倍数を計算
+    const randomSixDigitNumber = randomMultiple * prime;
+    setInvitationCode(randomSixDigitNumber)
   }, []);
 
   return (

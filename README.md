@@ -42,7 +42,6 @@ cd sharelingo
 // gitignore対象のファイル作成  
 ```
 {ファイル名}/src/sharelingo/.env.development  
-{ファイル名}/src/sharelingo/src/invitationEnv.json  
 ```
 
 // サーバーに入り、以下のコマンドをたたく
