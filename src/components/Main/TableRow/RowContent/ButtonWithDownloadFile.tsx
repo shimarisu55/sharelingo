@@ -4,6 +4,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DownloadIcon from '@mui/icons-material/Download'
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+
 // storage
 import { downloadData, DownloadDataOutput } from 'aws-amplify/storage';
 
@@ -16,13 +19,37 @@ interface DownloadFile {
 export default function ButtonWithDownloadFile(props: DownloadFile) {
   const { pictureBookTitle, pictureBookNum, soundSource } = props;
   const [open, setOpen] = React.useState(false);
+  const [doNotShowAgain, setDoNotShowAgain] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  // 「今後ダイアログ表示しない」にチェックいれたかで変わる
+  const handleClickDownloadButton = () => {
+    // resetLocalStorage() // 開発用
+    const doNotShowDialog = localStorage.getItem('doNotShowComfirmDownloadDialog');
+    console.log(doNotShowDialog)
+    if (doNotShowDialog == "true") {
+      // ダイアログを開かず、ダウンロード
+      downLoadFromS3()
+    } else {
+      // ダイアログ表示
+      setOpen(true);
+    }
   };
 
+  // // 開発用
+  // const resetLocalStorage = () => {
+  //   localStorage.setItem('doNotShowComfirmDownloadDialog', "false");
+  // }
+
   const handleClose = () => {
+    if (doNotShowAgain) {
+      localStorage.setItem('doNotShowComfirmDownloadDialog', "true");
+    }
     setOpen(false);
+  };
+
+  // 今後このダイアログをチェックしない
+  const handleCheckboxChange = (event: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
+    setDoNotShowAgain(event.target.checked);
   };
 
   // S3からダウンロード
@@ -56,7 +83,7 @@ export default function ButtonWithDownloadFile(props: DownloadFile) {
 
   return (
     <React.Fragment>
-      <Button onClick={handleClickOpen}><DownloadIcon /></Button>
+      <Button onClick={handleClickDownloadButton}><DownloadIcon /></Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -64,6 +91,14 @@ export default function ButtonWithDownloadFile(props: DownloadFile) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">ダウンロードしますか？</DialogTitle>
+        <FormControlLabel 
+          control={<Checkbox
+            checked={doNotShowAgain}
+            onChange={handleCheckboxChange}
+          />} 
+          label="以降このダイアログを表示しない"
+          style={{ marginLeft: '20px' }}
+        />
         <DialogActions>
           <Button onClick={downLoadFromS3}>はい</Button>
           <Button onClick={handleClose}>いいえ</Button>
